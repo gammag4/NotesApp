@@ -17,7 +17,7 @@ export default class ErrorList extends Component {
   handleError(err) {
     const { errors, errorIndex } = this.state;
     this.setState({
-      errors: errors.concat([{ errorIndex, err: String(err) }]),
+      errors: errors.concat([{ errorIndex, err: JSON.stringify(err) }]),
       errorIndex: errorIndex + 1,
     });
 
