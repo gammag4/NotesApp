@@ -69,12 +69,12 @@ export default class NotesView extends Component {
       let res;
       if (id === '-1') {
         const tags = [];
-        res = await axios.post("/api/notes/post", { title, content, tags });
+        res = await axios.post('/api/notes/post', { title, content, tags });
         const { data: { id: newId, title: newTitle, content: newContent } } = res;
 
         this.setState({ currentNote: { id: newId, title: newTitle, content: newContent } });
       } else {
-        res = await axios.put("/api/notes/put", { id, title, content });
+        res = await axios.put('/api/notes/put', { id, title, content });
       }
 
       await this.handleSearch('');
@@ -122,7 +122,7 @@ export default class NotesView extends Component {
 
     return (
       <div className="notes-view-wrapper">
-        <div className="current-note" viewing-note={String(!!currentNoteView)}>
+        <div className={`current-note ${currentNoteView ? 'viewing-note' : ''}`}>
           {currentNoteView}
         </div>
         <div className="notes-view" style={(currentNoteView) ? { filter: 'blur(2px)' } : {}}>
