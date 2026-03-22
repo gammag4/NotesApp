@@ -40,7 +40,7 @@ export default class NotesView extends Component {
     const { handleError } = this.props;
 
     try {
-      const { data: { err, notes } } = await axios.post('/notes/getPreviews', { search });
+      const { data: { err, notes } } = await axios.post('/api/notes/getPreviews', { search });
 
       if (err) handleError(err);
       else this.setState({ notes });
@@ -53,7 +53,7 @@ export default class NotesView extends Component {
     const { handleError } = this.props;
 
     try {
-      const { data: { err, note } } = await axios.post('/notes/get', { id });
+      const { data: { err, note } } = await axios.post('/api/notes/get', { id });
 
       if (err) handleError(err);
       else this.setState({ currentNote: note });
@@ -69,12 +69,12 @@ export default class NotesView extends Component {
       let res;
       if (id === '-1') {
         const tags = [];
-        res = await axios.post('/notes/post', { title, content, tags });
+        res = await axios.post("/api/notes/post", { title, content, tags });
         const { data: { id: newId, title: newTitle, content: newContent } } = res;
 
         this.setState({ currentNote: { id: newId, title: newTitle, content: newContent } });
       } else {
-        res = await axios.put('/notes/put', { id, title, content });
+        res = await axios.put("/api/notes/put", { id, title, content });
       }
 
       await this.handleSearch('');
@@ -94,7 +94,7 @@ export default class NotesView extends Component {
     }
 
     try {
-      const { data: { err } } = await axios.post('/notes/delete', { id });
+      const { data: { err } } = await axios.post('/api/notes/delete', { id });
       await this.handleSearch('');
       if (err) handleError(err);
     } catch (err) {
