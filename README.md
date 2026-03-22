@@ -15,7 +15,7 @@ git clone https://github.com/gammag4/NotesApp
 git clone https://github.com/gammag4/NotesBackend
 ```
 
-Configure mysql:
+Configure MySQL:
 
 ```bash
 sudo apt install mysql-server
